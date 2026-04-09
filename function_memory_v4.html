@@ -128,6 +128,8 @@ input[type=checkbox] { accent-color: #4e79a7; cursor: pointer; }
   <div id="i-name"></div>
   <div class="ilabel">Frequency</div>
   <div class="ivalue" id="i-freq"></div>
+  <div class="ilabel">Description</div>
+  <div class="ivalue" id="i-desc" style="color:#c8d8e8;line-height:1.6"></div>
   <div class="ilabel">Outgoing Transitions</div>
   <div id="i-trans"></div>
   <div class="ilabel">Thinking Examples</div>
@@ -213,6 +215,7 @@ async function main() {
     app: getApp(id),
     thinking_examples: d.thinking_examples || [],
     api_examples: d.api_examples || [],
+    nl_description: d.nl_description || '',
   }));
 
   // Arrow markers per app
@@ -329,6 +332,7 @@ async function main() {
       document.getElementById('i-name').innerHTML =
         `<span class="fn-chip" style="background:${c}22;border:1px solid ${c};color:${c}">${d.id}</span>`;
       document.getElementById('i-freq').textContent = d.freq;
+      document.getElementById('i-desc').textContent = d.nl_description || '—';
 
       // Outgoing
       const outs = links.filter(l => l.source.id === d.id).sort((a,b) => b.count - a.count);
